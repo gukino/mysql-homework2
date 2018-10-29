@@ -8,7 +8,14 @@ public class User {
 	Sex sex;
 	double amount;
 
-	public User( String name, Sex sex, double amount) {
+	public User(int uid, String name, Sex sex, double amount) {
+		this.uid = uid;
+		this.name = name;
+		this.sex = sex;
+		this.amount = amount;
+	}
+
+	public User(String name, Sex sex, double amount) {
 
 		this.name = name;
 		this.sex = sex;
@@ -45,5 +52,13 @@ public class User {
 
 	public void setAmount(double amount) {
 		this.amount = amount;
+	}
+
+
+	public boolean equal(User user){
+		if (this.amount==user.amount && this.name.equals(user.name) && this.sex==user.sex && this.uid==user.uid)
+			return true;
+		else
+			return false;
 	}
 }

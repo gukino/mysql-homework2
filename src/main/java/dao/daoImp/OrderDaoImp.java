@@ -4,24 +4,28 @@ import dao.DaoUtil;
 import dao.OrderDao;
 import po.Order;
 import po.User;
+import utils.Operate;
+import utils.Sex;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class OrderDaoImp implements OrderDao {
 	public void insert(Order order) {
+		Connection conn = DaoUtil.getConnection();
 		int i = 0;
-		String sql = "insert into ORDER (uid,pid,operate,time) values(?,?,?,?)";
+		String sql = "insert into Orders(uid,pid,operate,time) values(?,?,?,?)";
 		PreparedStatement pstmt;
 		try {
-			Connection conn = DaoUtil.getConnection();
+
 			pstmt = (PreparedStatement) conn.prepareStatement(sql);
 			pstmt.setString(1, String.valueOf(order.getUid()));
 			pstmt.setString(2, String.valueOf(order.getPid()));
-			pstmt.setString(3, String.valueOf(order.getOperate()));
-			pstmt.setString(4, String.valueOf(order.getEnd_time()));
+			pstmt.setString(3, order.getOperate().toString());
+			pstmt.setString(4, order.getEnd_time().toString());
 			i = pstmt.executeUpdate();
 			pstmt.close();
 			conn.close();
@@ -30,37 +34,28 @@ public class OrderDaoImp implements OrderDao {
 		}
 	}
 
-	public void  update(Order order) {
+	public ArrayList<Order> query(int uid) {
+		ArrayList<Order> orderArrayList = new ArrayList<Order>();
+		Connection conn = DaoUtil.getConnection();
 		int i = 0;
-		String sql = "update order set uid='" + order.getUid() + "' where pid='" + order.getPid() + "'";
+		String sql = "select * from orders where uid = ?";
 		PreparedStatement pstmt;
 		try {
-			Connection conn = DaoUtil.getConnection();
-
 			pstmt = (PreparedStatement) conn.prepareStatement(sql);
-			i = pstmt.executeUpdate();
-			System.out.println("resutl: " + i);
+			pstmt.setString(1, String.valueOf(uid));
+
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()){
+
+				Order order = new Order(uid, rs.getInt(2), Operate.valueOf(rs.getString(3)), rs.getDate(4));
+				orderArrayList.add(order);
+			}
 			pstmt.close();
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
 
-	public void delete(Order order) {
-		int i = 0;
-		String sql = "delete from ORDER where Name='" + uid + "'";
-		PreparedStatement pstmt;
-		try {
-			Connection conn = DaoUtil.getConnection();
-
-			pstmt = (PreparedStatement) conn.prepareStatement(sql);
-			i = pstmt.executeUpdate();
-			System.out.println("resutl: " + i);
-			pstmt.close();
-			conn.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		return orderArrayList;
 	}
 }
