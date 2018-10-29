@@ -8,6 +8,13 @@ public class User {
 	Sex sex;
 	double amount;
 
+	public User( String name, Sex sex, double amount) {
+
+		this.name = name;
+		this.sex = sex;
+		this.amount = amount;
+	}
+
 	public int getUid() {
 		return uid;
 	}
