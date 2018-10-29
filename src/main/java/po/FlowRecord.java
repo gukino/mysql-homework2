@@ -1,12 +1,14 @@
 package po;
 
+import utils.Flowtype;
 import java.util.Date;
 
-public class Message_record {
+public class FlowRecord {
 	int uid;
 	int amount;
 	double price;
 	java.sql.Date end_time;
+	Flowtype type;
 
 	public int getUid() {
 		return uid;
@@ -32,11 +34,19 @@ public class Message_record {
 		this.price = price;
 	}
 
-	public Date getEnd_time() {
+	public java.sql.Date getEnd_time() {
 		return end_time;
 	}
 
 	public void setEnd_time(java.sql.Date end_time) {
 		this.end_time = end_time;
+	}
+
+	public Flowtype getType() {
+		return type;
+	}
+
+	public void setType(Flowtype type) {
+		this.type = type;
 	}
 }

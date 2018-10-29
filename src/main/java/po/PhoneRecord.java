@@ -1,13 +1,20 @@
 package po;
 
 
-import java.util.Date;
+import java.sql.Date;
 
-public class Phone_record {
+public class PhoneRecord {
 	int uid;
 	int time;
 	double price;
-	java.sql.Date end_time;
+	Date end_time;
+
+	public PhoneRecord(int uid, int time, double price, Date end_time) {
+		this.uid = uid;
+		this.time = time;
+		this.price = price;
+		this.end_time = end_time;
+	}
 
 	public int getUid() {
 		return uid;

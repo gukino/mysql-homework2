@@ -19,7 +19,7 @@ public class UserDaoImp implements UserDao {
 		try {
 
 			pstmt = (PreparedStatement) conn.prepareStatement(sql);
-			//pstmt.setString(1, String.valueOf(user.getUid()));
+			pstmt.setString(1, null);
 			pstmt.setString(2, user.getName());
 			pstmt.setString(3, String.valueOf(user.getSex()));
 			pstmt.setString(4, String.valueOf(user.getAmount()));
