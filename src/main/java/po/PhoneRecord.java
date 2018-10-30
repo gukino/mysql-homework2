@@ -16,6 +16,12 @@ public class PhoneRecord {
 		this.end_time = end_time;
 	}
 
+	public PhoneRecord() {
+		this.uid=0;
+		this.time=0;
+		this.price=0;
+	}
+
 	public int getUid() {
 		return uid;
 	}

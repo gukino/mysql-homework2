@@ -81,7 +81,7 @@ public class OrderDaoImp implements OrderDao {
 	void updateState(Order order, Connection conn) {
 
 		int i = 0;
-		String sql = "update orders set state='失效' where uid= ? and pid = ? ";
+		String sql = "update orders set state='待失效' where uid= ? and pid = ? ";
 		PreparedStatement pstmt;
 		try {
 			pstmt = (PreparedStatement) conn.prepareStatement(sql);

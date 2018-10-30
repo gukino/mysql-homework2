@@ -1,6 +1,7 @@
 package po;
 
-import java.util.Date;
+
+import java.sql.Date;
 
 public class Bills_record {
 	int uid;
@@ -8,7 +9,15 @@ public class Bills_record {
 	int call;
 	int message;
 	double price;
-	java.sql.Date date;
+	Date date;
+
+	public Bills_record() {
+		this.uid=0;
+		this.flow=0;
+		this.call=0;
+		this.message=0;
+		this.price=0;
+	}
 
 	public int getUid() {
 		return uid;
@@ -54,7 +63,7 @@ public class Bills_record {
 		return date;
 	}
 
-	public void setDate(java.sql.Date date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 }

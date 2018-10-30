@@ -15,5 +15,13 @@ public class OrderServiceTest {
 		orderService.queryHistory(1);
 	}
 
+	/**
+	 * 测试 queryCurrent()方法/*
+	 */
+	@Test
+	public void testQueryCurrent() {
 
+		OrderService orderService = new OrderServiceImp();
+		orderService.queryCurrentPackage(1);
+	}
 }

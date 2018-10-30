@@ -2,21 +2,33 @@ package po;
 
 public class Package {
 	int pid;
-	int flow;
+	int globalFlow;
+	int localFlow;
 	int call;
 	int message;
 	double price;
 
-	public Package(int flow, int call, int message, double price) {
-		this.flow = flow;
+	public Package() {
+		this.globalFlow = 0;
+		this.localFlow = 0;
+		this.call = 0;
+		this.message = 0;
+		this.price = 0;
+	}
+
+
+	public Package(int pid, int globalFlow, int localFlow, int call, int message, double price) {
+		this.pid = pid;
+		this.globalFlow = globalFlow;
+		this.localFlow = localFlow;
 		this.call = call;
 		this.message = message;
 		this.price = price;
 	}
 
-	public Package(int pid, int flow, int call, int message, double price) {
-		this.pid = pid;
-		this.flow = flow;
+	public Package(int globalFlow, int localFlow, int call, int message, double price) {
+		this.globalFlow = globalFlow;
+		this.localFlow = localFlow;
 		this.call = call;
 		this.message = message;
 		this.price = price;
@@ -30,12 +42,20 @@ public class Package {
 		this.pid = pid;
 	}
 
-	public int getFlow() {
-		return flow;
+	public int getGlobalFlow() {
+		return globalFlow;
 	}
 
-	public void setFlow(int flow) {
-		this.flow = flow;
+	public void setGlobalFlow(int globalFlow) {
+		this.globalFlow = globalFlow;
+	}
+
+	public int getLocalFlow() {
+		return localFlow;
+	}
+
+	public void setLocalFlow(int localFlow) {
+		this.localFlow = localFlow;
 	}
 
 	public int getCall() {
@@ -63,11 +83,11 @@ public class Package {
 	}
 
 	public boolean equal(Package pack){
-		return this.call==pack.getCall() && this.flow==pack.getFlow() && this.price==pack.getPrice()
-			&& this.pid==pack.getPid() && this.message==pack.getMessage();
+		return this.call==pack.getCall() && this.globalFlow==pack.getGlobalFlow() && this.price==pack.getPrice()
+			&& this.pid==pack.getPid() && this.message==pack.getMessage() && this.localFlow==pack.getLocalFlow();
 	}
 
 	public void print(){
-		System.out.println(this.pid+"  "+this.flow+" " +this.call+" "+this.message+" "+this.price);
+		System.out.println(this.pid+"  "+this.globalFlow+"  "+this.localFlow+" " +this.call+" "+this.message+" "+this.price);
 	}
 }

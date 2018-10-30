@@ -10,6 +10,21 @@ public class FlowRecord {
 	java.sql.Date end_time;
 	Flowtype type;
 
+	public FlowRecord(int uid, int amount, double price, java.sql.Date end_time, Flowtype type) {
+		this.uid = uid;
+		this.amount = amount;
+		this.price = price;
+		this.end_time = end_time;
+		this.type = type;
+	}
+
+	public FlowRecord() {
+		this.uid = 0;
+		this.amount = 0;
+		this.price = 0;
+	}
+
+
 	public int getUid() {
 		return uid;
 	}

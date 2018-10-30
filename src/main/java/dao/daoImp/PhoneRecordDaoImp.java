@@ -2,6 +2,7 @@ package dao.daoImp;
 
 import dao.DaoUtil;
 import dao.PhoneRecordDao;
+import po.Bills_record;
 import po.PhoneRecord;
 import po.PhoneRecord;
 import utils.Operate;
@@ -85,5 +86,31 @@ public class PhoneRecordDaoImp implements PhoneRecordDao{
 		}
 
 		return phoneRecordArrayList;
+	}
+
+	public PhoneRecord getAmountByMonth(int uid, LocalDate date) {
+
+		PhoneRecord phoneRecord= new PhoneRecord();
+		Connection conn = DaoUtil.getConnection();
+		int i = 0;
+		String sql = "select sum(time),sum(price) from Phone_record where uid = ? and year(end_time)=? and MONTH (end_time)=?";
+		PreparedStatement pstmt;
+		try {
+			pstmt = (PreparedStatement) conn.prepareStatement(sql);
+			pstmt.setString(1, String.valueOf(uid));
+			pstmt.setString(2, String.valueOf(date.getYear()));
+			pstmt.setString(3, String.valueOf(date.getMonthValue()));
+			ResultSet rs = pstmt.executeQuery();
+			rs.next();
+			phoneRecord.setTime(rs.getInt(1));
+			phoneRecord.setPrice(rs.getDouble(2));
+
+			pstmt.close();
+			//conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return phoneRecord;
 	}
 }

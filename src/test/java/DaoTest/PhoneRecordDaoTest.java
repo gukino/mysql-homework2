@@ -21,7 +21,7 @@ public class PhoneRecordDaoTest {
 		PhoneRecordDao phoneRecordTest = new PhoneRecordDaoImp();
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		try {
-			java.util.Date parsed = format.parse("2018-10-29");
+			java.util.Date parsed = format.parse("2018-10-30");
 			Date date =new Date(parsed.getTime());
 			PhoneRecord phoneRecord = new PhoneRecord(1,10, 5,date);
 			phoneRecordTest.insert(phoneRecord);

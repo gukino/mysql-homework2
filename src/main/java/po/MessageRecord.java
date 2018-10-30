@@ -1,12 +1,26 @@
 package po;
 
-import java.util.Date;
+
+import java.sql.Date;
 
 public class MessageRecord {
 	int uid;
 	int amount;
 	double price;
-	java.sql.Date end_time;
+	Date end_time;
+
+	public MessageRecord(int uid, int amount, double price, Date end_time) {
+		this.uid = uid;
+		this.amount = amount;
+		this.price = price;
+		this.end_time = end_time;
+	}
+
+
+	public MessageRecord() {
+		this.amount = 0;
+		this.price = 0;
+	}
 
 	public int getUid() {
 		return uid;

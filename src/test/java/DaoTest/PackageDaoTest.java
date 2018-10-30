@@ -14,7 +14,7 @@ public class PackageDaoTest {
 	public void testInsert(){
 		PackageDao packageTest = new PackageDaoImp();
 
-		Package packages = new Package(100, 50, 20, 10);
+		Package packages = new Package(100,100, 50, 20, 10);
 
 		packageTest.insert(packages);
 	}
@@ -27,7 +27,7 @@ public class PackageDaoTest {
 	public void testQuery(){
 		PackageDao packageTest = new PackageDaoImp();
 		Package packages = packageTest.query(1);
-		Package apackage = new Package(1,0,50,20,8);
+		Package apackage = new Package(1,100,50,20,8);
 		Assert.assertTrue(packages.equal(apackage));
 	}
 }

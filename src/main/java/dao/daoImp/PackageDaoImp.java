@@ -18,16 +18,17 @@ public class PackageDaoImp implements PackageDao{
 
 		Connection conn = DaoUtil.getConnection();
 		int i = 0;
-		String sql = "insert into package (flow,calls,message,price) values(?,?,?,?)";
+		String sql = "insert into package (globalFlow,localFlow,calls,message,price) values(?,?,?,?,?)";
 		PreparedStatement pstmt;
 		try {
 
 			pstmt = (PreparedStatement) conn.prepareStatement(sql);
 			//pstmt.setString(1, null);
-			pstmt.setString(1, Integer.toString(packages.getFlow()));
-			pstmt.setString(2, Integer.toString(packages.getCall()));
-			pstmt.setString(3, Integer.toString(packages.getMessage()));
-			pstmt.setString(4, Double.toString(packages.getPrice()));
+			pstmt.setString(1, Integer.toString(packages.getGlobalFlow()));
+			pstmt.setString(2, Integer.toString(packages.getLocalFlow()));
+			pstmt.setString(3, Integer.toString(packages.getCall()));
+			pstmt.setString(4, Integer.toString(packages.getMessage()));
+			pstmt.setString(5, Double.toString(packages.getPrice()));
 			i = pstmt.executeUpdate();
 			pstmt.close();
 			//conn.close();
@@ -49,7 +50,7 @@ public class PackageDaoImp implements PackageDao{
 
 			ResultSet rs = pstmt.executeQuery();
 			rs.next();
-			aPackage = new Package(pid, rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getDouble(5));
+			aPackage = new Package(pid, rs.getInt(2),rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getDouble(6));
 			pstmt.close();
 			//conn.close();
 		} catch (SQLException e) {
