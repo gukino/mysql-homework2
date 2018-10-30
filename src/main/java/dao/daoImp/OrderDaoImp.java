@@ -33,7 +33,7 @@ public class OrderDaoImp implements OrderDao {
 				updateState(order, conn);
 			}
 			pstmt.close();
-			conn.close();
+			//conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -63,7 +63,7 @@ public class OrderDaoImp implements OrderDao {
 				orderArrayList.add(order);
 			}
 			pstmt.close();
-			conn.close();
+			//conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -74,7 +74,7 @@ public class OrderDaoImp implements OrderDao {
 
 	public ArrayList<Order> queryCurrent(int uid) {
 
-		String sql = "select * from (select * from orders where uid = ? order by end_time) group by uid,pid";
+		String sql = "select * from orders where uid = ? and state='生效'";
 		return query(uid,sql);
 	}
 
@@ -89,7 +89,7 @@ public class OrderDaoImp implements OrderDao {
 			pstmt.setString(2, String.valueOf(order.getPid()));
 			i = pstmt.executeUpdate();
 			pstmt.close();
-			conn.close();
+			//conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

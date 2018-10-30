@@ -30,7 +30,7 @@ public class PackageDaoImp implements PackageDao{
 			pstmt.setString(4, Double.toString(packages.getPrice()));
 			i = pstmt.executeUpdate();
 			pstmt.close();
-			conn.close();
+			//conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -51,7 +51,7 @@ public class PackageDaoImp implements PackageDao{
 			rs.next();
 			aPackage = new Package(pid, rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getDouble(5));
 			pstmt.close();
-			conn.close();
+			//conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

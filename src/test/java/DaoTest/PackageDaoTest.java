@@ -14,7 +14,7 @@ public class PackageDaoTest {
 	public void testInsert(){
 		PackageDao packageTest = new PackageDaoImp();
 
-		Package packages = new Package(0, 50, 20, 8);
+		Package packages = new Package(100, 50, 20, 10);
 
 		packageTest.insert(packages);
 	}

@@ -27,7 +27,7 @@ public class PhoneRecordDaoImp implements PhoneRecordDao{
 			pstmt.setDate(4, phoneRecord.getEnd_time());
 			i = pstmt.executeUpdate();
 			pstmt.close();
-			conn.close();
+			//conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -51,7 +51,7 @@ public class PhoneRecordDaoImp implements PhoneRecordDao{
 				phoneRecordArrayList.add(phoneRecord);
 			}
 			pstmt.close();
-			conn.close();
+			//conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -79,7 +79,7 @@ public class PhoneRecordDaoImp implements PhoneRecordDao{
 				phoneRecordArrayList.add(phoneRecord);
 			}
 			pstmt.close();
-			conn.close();
+			//conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

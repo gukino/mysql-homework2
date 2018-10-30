@@ -25,7 +25,7 @@ public class UserDaoImp implements UserDao {
 			pstmt.setString(4, String.valueOf(user.getAmount()));
 			i = pstmt.executeUpdate();
 			pstmt.close();
-			conn.close();
+			//conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -45,7 +45,7 @@ public class UserDaoImp implements UserDao {
 			rs.next();
 			user = new User(uid, rs.getString(2), Sex.valueOf(rs.getString(3)), rs.getDouble(4));
 			pstmt.close();
-			conn.close();
+			//conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

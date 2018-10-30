@@ -66,4 +66,8 @@ public class Package {
 		return this.call==pack.getCall() && this.flow==pack.getFlow() && this.price==pack.getPrice()
 			&& this.pid==pack.getPid() && this.message==pack.getMessage();
 	}
+
+	public void print(){
+		System.out.println(this.pid+"  "+this.flow+" " +this.call+" "+this.message+" "+this.price);
+	}
 }

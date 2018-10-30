@@ -67,7 +67,7 @@ public class Order {
 	}
 
 	public void print(){
-		System.out.println(Integer.toString(this.uid)+"   "+Integer.toString(this.pid)+"   "+
+		System.out.println(Integer.toString(this.uid)+"    "+Integer.toString(this.pid)+"   "+
 			this.operate.toString()+" "+this.end_time);
 	}
 }
