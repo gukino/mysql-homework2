@@ -1042,88 +1042,93 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="256" parent="234" name="pid">
+    <column id="256" parent="233" name="state">
+      <Position>5</Position>
+      <DataType>enum(&apos;生效&apos;, &apos;待生效&apos;, &apos;失效&apos;, &apos;代失效&apos;)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="257" parent="234" name="pid">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="257" parent="234" name="flow">
+    <column id="258" parent="234" name="flow">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="258" parent="234" name="calls">
+    <column id="259" parent="234" name="calls">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="259" parent="234" name="message">
+    <column id="260" parent="234" name="message">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="260" parent="234" name="price">
+    <column id="261" parent="234" name="price">
       <Position>5</Position>
       <DataType>decimal(10,2)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="261" parent="234" name="PRIMARY">
+    <key id="262" parent="234" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>pid</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="262" parent="235" name="uid">
+    <column id="263" parent="235" name="uid">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="263" parent="235" name="time">
+    <column id="264" parent="235" name="time">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="264" parent="235" name="price">
+    <column id="265" parent="235" name="price">
       <Position>3</Position>
       <DataType>decimal(10,2)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="265" parent="235" name="end_time">
+    <column id="266" parent="235" name="end_time">
       <Position>4</Position>
       <DataType>date|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="266" parent="236" name="uid">
+    <column id="267" parent="236" name="uid">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="267" parent="236" name="name">
+    <column id="268" parent="236" name="name">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="268" parent="236" name="sex">
+    <column id="269" parent="236" name="sex">
       <Position>3</Position>
       <DataType>enum(&apos;男&apos;, &apos;女&apos;)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="269" parent="236" name="amount">
+    <column id="270" parent="236" name="amount">
       <Position>4</Position>
       <DataType>decimal(10,2)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="270" parent="236" name="PRIMARY">
+    <key id="271" parent="236" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>uid</ColNames>
       <Primary>1</Primary>

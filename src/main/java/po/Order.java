@@ -1,6 +1,7 @@
 package po;
 
 import utils.Operate;
+import utils.State;
 
 import java.sql.Date;
 
@@ -9,12 +10,20 @@ public class Order {
 	int pid;
 	Operate operate;
 	Date end_time;
+	State state;
 
-	public Order(int uid, int pid, Operate operate, Date end_time) {
+	public Order(int uid, int pid, Operate operate, Date end_time, State state) {
 		this.uid = uid;
 		this.pid = pid;
 		this.operate = operate;
 		this.end_time = end_time;
+		this.state = state;
+	}
+
+	public Order(int uid, int pid, Operate operate) {
+		this.uid = uid;
+		this.pid = pid;
+		this.operate = operate;
 	}
 
 	public int getUid() {
@@ -47,5 +56,18 @@ public class Order {
 
 	public void setEnd_time(Date end_time) {
 		this.end_time = end_time;
+	}
+
+	public State getState() {
+		return state;
+	}
+
+	public void setState(State state) {
+		this.state = state;
+	}
+
+	public void print(){
+		System.out.println(Integer.toString(this.uid)+"   "+Integer.toString(this.pid)+"   "+
+			this.operate.toString()+" "+this.end_time);
 	}
 }
