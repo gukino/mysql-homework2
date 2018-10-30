@@ -4,7 +4,10 @@ import dao.FlowRecordDao;
 import dao.daoImp.FlowRecordDaoImp;
 import org.junit.Test;
 import po.FlowRecord;
+import po.Order;
 import utils.Flowtype;
+import utils.Operate;
+import utils.State;
 
 import java.sql.Date;
 import java.text.ParseException;
@@ -18,10 +21,28 @@ public class FlowRecordDaoTest {
 	@Test
 	public void testInsert(){
 		FlowRecordDao flowRecordTest = new FlowRecordDaoImp();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			java.util.Date parse1 = format.parse("2018-10-29");
+			java.util.Date parse2 = format.parse("2018-09-21");
+			java.util.Date parse3 = format.parse("2018-09-11");
+			java.util.Date parse4 = format.parse("2018-08-24");
+			java.util.Date parse5 = format.parse("2018-07-22");
 
-		Date date =Date.valueOf(LocalDate.now());
-		FlowRecord flowRecord = new FlowRecord(1,200, 16,date, Flowtype.本地);
-		flowRecordTest.insert(flowRecord);
+
+			flowRecordTest.insert(new FlowRecord(1,300, 16,new Date(parse3.getTime()), Flowtype.本地));
+
+			flowRecordTest.insert(new FlowRecord(1,600, 16,new Date(parse3.getTime()), Flowtype.全国));
+
+			flowRecordTest.insert(new FlowRecord(1,500, 16,new Date(parse2.getTime()), Flowtype.本地));
+
+			flowRecordTest.insert(new FlowRecord(1,100, 16,new Date(parse2.getTime()), Flowtype.全国));
+
+			flowRecordTest.insert(new FlowRecord(1,200, 16,new Date(parse1.getTime()), Flowtype.本地));
+
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 	}
 
 

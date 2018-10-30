@@ -88,6 +88,6 @@ public class Package {
 	}
 
 	public void print(){
-		System.out.println(this.pid+"  "+this.globalFlow+"  "+this.localFlow+" " +this.call+" "+this.message+" "+this.price);
+		System.out.println(this.pid+"      "+this.globalFlow+"      "+this.localFlow+"      " +this.call+"      "+this.message+"     "+this.price);
 	}
 }

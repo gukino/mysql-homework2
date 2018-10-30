@@ -20,6 +20,19 @@ public class Order {
 		this.state = state;
 	}
 
+	public Order(int uid, int pid, Operate operate, Date end_time) {
+		this.uid = uid;
+		this.pid = pid;
+		this.operate = operate;
+		this.end_time = end_time;
+		if (operate.equals(Operate.退订))
+			this.state=State.失效;
+		else {
+
+			this.state = State.待生效;
+		}
+	}
+
 	public Order(int uid, int pid, Operate operate) {
 		this.uid = uid;
 		this.pid = pid;
@@ -67,7 +80,7 @@ public class Order {
 	}
 
 	public void print(){
-		System.out.println(Integer.toString(this.uid)+"    "+Integer.toString(this.pid)+"   "+
-			this.operate.toString()+" "+this.end_time);
+		System.out.println(Integer.toString(this.uid)+"     "+Integer.toString(this.pid)+"    "+
+			this.operate.toString()+"   "+this.end_time);
 	}
 }

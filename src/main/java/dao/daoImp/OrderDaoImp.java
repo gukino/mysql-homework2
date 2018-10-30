@@ -74,14 +74,14 @@ public class OrderDaoImp implements OrderDao {
 
 	public ArrayList<Order> queryCurrent(int uid) {
 
-		String sql = "select * from orders where uid = ? and state='生效'";
+		String sql = "select * from orders where uid = ? and (state='生效' or state ='待失效')";
 		return query(uid,sql);
 	}
 
 	void updateState(Order order, Connection conn) {
 
 		int i = 0;
-		String sql = "update orders set state='待失效' where uid= ? and pid = ? ";
+		String sql = "update orders set state='待失效' where uid= ? and pid = ? and state='生效'";
 		PreparedStatement pstmt;
 		try {
 			pstmt = (PreparedStatement) conn.prepareStatement(sql);

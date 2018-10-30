@@ -50,9 +50,9 @@ public class OrderServiceImp implements OrderService{
 		OrderDao orderDao = new OrderDaoImp();
 		ArrayList<Order> orderArrayList = orderDao.queryCurrent(uid);
 
-		System.out.println("查询用户当前套餐");
+		System.out.println("查询用户"+uid+"当前套餐");
 		PackageDao packageDao = new PackageDaoImp();
-		System.out.println("套餐 流量 电话时长 短信条数 价格：");
+		System.out.println("套餐 全国流量 本地流量 电话时长 短信条数 价格：");
 		for (Order order : orderArrayList){
 			packageDao.query(order.getPid()).print();
 		}
@@ -66,6 +66,8 @@ public class OrderServiceImp implements OrderService{
 			}
 		});
 		System.out.println("查询用户历史操作");
+
+		System.out.println("用户  套餐  操作     日期");
 		for (Order order : orderArrayList){
 			order.print();
 		}

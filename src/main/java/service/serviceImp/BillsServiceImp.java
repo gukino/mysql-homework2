@@ -43,6 +43,7 @@ public class BillsServiceImp implements BillsService {
 		int messageAmount=0;
 		int localFlowAmount=0;
 		int globalFlowAmount=0;
+		int packagePrice=0;
 
 		double price=0;
 		PhoneRecordDao phoneRecordDao = new PhoneRecordDaoImp();
@@ -50,7 +51,7 @@ public class BillsServiceImp implements BillsService {
 		MessageRecordDao messageRecordDao = new MessageRecordDaoImp();
 
 		LocalDate today = LocalDate.now();
-//		today = today.minusMonths(1);
+		today = today.minusMonths(1);
 		PhoneRecord phoneRecord = phoneRecordDao.getAmountByMonth(uid,today);
 		callAmount+=phoneRecord.getTime();
 		price+=phoneRecord.getPrice();
@@ -67,10 +68,17 @@ public class BillsServiceImp implements BillsService {
 		messageAmount+=messageRecord.getAmount();
 		price+=messageRecord.getPrice();
 
+		OrderService orderService= new OrderServiceImp();
+
+		for (Package p : orderService.getCurrentPackage(uid)){
+			packagePrice+=p.getPrice();
+		}
+		price+=packagePrice;
+
 		int month = today.minusMonths(1).getMonthValue();
 		System.out.println(month+"月的账单详情：");
-		System.out.println("用户 全国流量/mb 本地流量/mb 电话时长/min 短信条数 总额");
-		System.out.println("  "+uid+"     "+globalFlowAmount+"      "+localFlowAmount+"        "+callAmount+"    "+messageAmount+"    "+price);
+		System.out.println("用户 全国流量/mb 本地流量/mb 电话时长/min 短信条数 套餐费 总额");
+		System.out.println("  "+uid+"      "+globalFlowAmount+"       "+localFlowAmount+"         "+callAmount+"        "+messageAmount+"      "+packagePrice+"      "+price);
 	}
 
 

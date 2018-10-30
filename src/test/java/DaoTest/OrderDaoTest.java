@@ -4,10 +4,13 @@ import dao.OrderDao;
 import dao.daoImp.OrderDaoImp;
 import org.junit.Test;
 import po.Order;
+import po.PhoneRecord;
 import utils.Operate;
 import utils.State;
 
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class OrderDaoTest {
@@ -18,12 +21,33 @@ public class OrderDaoTest {
 	@Test
 	public void testInsert(){
 		OrderDao orderTest = new OrderDaoImp();
-		Date date = new Date(System.currentTimeMillis());
 
-		//System.out.println(date);
-		Order order = new Order(1,2, Operate.订购,date , State.生效);
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			java.util.Date parse1 = format.parse("2018-10-29");
+			java.util.Date parse2 = format.parse("2018-09-21");
+			java.util.Date parse3 = format.parse("2018-09-11");
+			java.util.Date parse4 = format.parse("2018-08-24");
+			java.util.Date parse5 = format.parse("2018-07-22");
 
-		orderTest.insert(order);
+			orderTest.insert(new Order(1,5, Operate.订购,new Date(parse5.getTime()),State.失效));
+
+			orderTest.insert(new Order(1,5, Operate.退订,new Date(parse4.getTime()),State.失效));
+			orderTest.insert(new Order(1,3, Operate.订购,new Date(parse4.getTime()),State.生效));
+			orderTest.insert(new Order(1,2, Operate.订购,new Date(parse4.getTime()),State.生效));
+
+			orderTest.insert(new Order(3,2, Operate.订购,new Date(parse3.getTime()),State.生效));
+
+			orderTest.insert(new Order(1,1, Operate.订购,new Date(parse2.getTime()),State.生效));
+			orderTest.insert(new Order(3,1, Operate.订购,new Date(parse2.getTime()),State.生效));
+
+			orderTest.insert(new Order(1,4, Operate.订购,new Date(parse1.getTime()),State.待生效));
+			orderTest.insert(new Order(3,1, Operate.退订,new Date(parse1.getTime()),State.失效));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+
 	}
 
 	/**

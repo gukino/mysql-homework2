@@ -16,8 +16,10 @@ public class UserDaoTest {
 	//测试 insert()方法
 	public void testInsert(){
 		UserDao userTest = new UserDaoImp();
-		User user = new User("??", 男,10);
-		userTest.insert(user);
+
+		userTest.insert(new User("胡本霖", 男,100));
+		userTest.insert(new User("胡明伟", 男,100));
+		userTest.insert(new User("何天行", 男,100));
 	}
 
 	@Test
