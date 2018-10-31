@@ -51,7 +51,7 @@ public class BillsServiceImp implements BillsService {
 		MessageRecordDao messageRecordDao = new MessageRecordDaoImp();
 
 		LocalDate today = LocalDate.now();
-		today = today.minusMonths(1);
+//		today = today.minusMonths(1);
 		PhoneRecord phoneRecord = phoneRecordDao.getAmountByMonth(uid,today);
 		callAmount+=phoneRecord.getTime();
 		price+=phoneRecord.getPrice();
@@ -76,40 +76,39 @@ public class BillsServiceImp implements BillsService {
 		price+=packagePrice;
 
 		int month = today.minusMonths(1).getMonthValue();
-		System.out.println(month+"月的账单详情：");
+		System.out.println(month+1+"月的账单详情：");
 		System.out.println("用户 全国流量/mb 本地流量/mb 电话时长/min 短信条数 套餐费 总额");
 		System.out.println("  "+uid+"      "+globalFlowAmount+"       "+localFlowAmount+"         "+callAmount+"        "+messageAmount+"      "+packagePrice+"      "+price);
 	}
 
+	double cal(int amount,int currentAmount,int packageAmount,double price){
+		if (packageAmount>currentAmount){
+			if (amount<(packageAmount-currentAmount))
+				return 0;
+			else
+				return (amount-(packageAmount-currentAmount))*price;
+		}else{
+			return amount*price;
+		}
+	}
 
 	double calCallFee(int amount, int currentAmount,int packageAmount){
-		if (amount<(packageAmount-currentAmount))
-			return 0;
-		else
-			return (amount-(packageAmount-currentAmount))*callPrice;
+		return  cal(amount,currentAmount,packageAmount,callPrice);
 	}
 
 	double calFlowFee(int amount, int currentAmount,Package apackage,Flowtype flowtype){
 
 		if (flowtype.equals(Flowtype.本地)) {
-			if (amount < (apackage.getLocalFlow()-currentAmount))
-				return 0;
-			else
-				return (amount - (apackage.getLocalFlow()-currentAmount)) * localFlowPrice;
+			return cal(amount,currentAmount,apackage.getLocalFlow(),localFlowPrice);
 
 		}else{
-			if (amount < (apackage.getGlobalFlow()-currentAmount))
-				return 0;
-			else
-				return (amount - (apackage.getGlobalFlow()-currentAmount)) * globalFlowPrice;
+			return cal(amount,currentAmount,apackage.getGlobalFlow(),globalFlowPrice);
 		}
 	}
 
 	double calMessageFee(int amount, int currentAmount,int packageAmount){
-		if (amount<(packageAmount-currentAmount))
-			return 0;
-		else
-			return (amount-(packageAmount-currentAmount))*messagePrice;
+		return cal(amount,currentAmount,packageAmount,messagePrice);
+
 	}
 
 	@Override
@@ -125,6 +124,7 @@ public class BillsServiceImp implements BillsService {
 
 		PhoneRecord addRecord = new PhoneRecord(uid,amount,price,Date.valueOf(today));
 		phoneRecordDao.insert(addRecord);
+		System.out.println("添加用户"+uid+"通话记录，通话时间："+amount+"，资费："+price);
 	}
 
 	@Override
@@ -140,6 +140,7 @@ public class BillsServiceImp implements BillsService {
 
 		FlowRecord addRecord = new FlowRecord(uid,amount,price,Date.valueOf(today),flowtype);
 		flowRecordDao.insert(addRecord);
+		System.out.println("添加用户"+uid+flowtype.toString()+"流量记录，流量大小："+amount+"，资费："+price);
 	}
 
 	@Override
@@ -155,6 +156,7 @@ public class BillsServiceImp implements BillsService {
 
 		MessageRecord addRecord = new MessageRecord(uid,amount,price,Date.valueOf(today));
 		messageRecordDao.insert(addRecord);
+		System.out.println("添加用户"+uid+"短信记录，短信数量："+amount+"，资费："+price);
 	}
 
 }
